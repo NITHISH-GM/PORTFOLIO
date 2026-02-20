@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NITHISH M | Contact</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-contact">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">[ HOME ]</a></li>
+            <li><a href="about.html">[ ABOUT ]</a></li>
+            <li><a href="skills.html">[ SKILLS ]</a></li>
+            <li><a href="contact.html" class="active">[ CONTACT ]</a></li>
+        </ul>
+    </nav>
+
+    <!-- UI Elements -->
+    <div class="cursor-wrapper">
+        <div class="cursor-blob"></div>
+    </div>
+    <canvas id="bg-canvas" data-speed="0"></canvas>
+
+    <main class="container">
+        <div class="content-frame">
+            <section id="contact" class="static-section">
+                <div class="terminal-header">
+                    <span class="prompt">></span>
+                    <span class="command-text">./connect_nithish.sh</span>
+                </div>
+                
+                <div class="t-content" style="max-width: 700px; margin: 0 auto;">
+                    <div class="contact-header">
+                        <h2 class="scramble-text">Establish Uplink</h2>
+                        <p>Chennai, India | +91 7904985237</p>
+                    </div>
+                    
+                    <form id="contact-form" onsubmit="event.preventDefault(); sendMessage();">
+                        <div class="input-wrap">
+                            <label for="email">SENDER_ID (Email):</label>
+                            <input type="email" id="email" placeholder="nithish1436m@gamil.com (System Default)" required>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="message">TRANSMISSION_DATA:</label>
+                            <textarea id="message" rows="4" placeholder="Initiate conversation protocol..." required></textarea>
+                        </div>
+                        <button type="submit" class="send-btn">[ EXECUTE SEND ]</button>
+                    </form>
+
+                    <div class="footer-info">
+                        <p>SESSION UPTIME: <span id="uptime-counter">00:00:00</span></p>
+                        <div class="social-links-minimal">
+                            <a href="https://linkedin.com/in/M-NITHISH" target="_blank">LinkedIn</a> | 
+                            <a href="mailto:nithish1436m@gamil.com">Email</a> | 
+                            <a href="#">GitHub</a>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.7rem; color: #444;">SYSTEM ARCHITECT: NITHISH M</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

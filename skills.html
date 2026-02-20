@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NITHISH M | Skills & Projects</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-skills">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">[ HOME ]</a></li>
+            <li><a href="about.html">[ ABOUT ]</a></li>
+            <li><a href="skills.html" class="active">[ SKILLS ]</a></li>
+            <li><a href="contact.html">[ CONTACT ]</a></li>
+        </ul>
+    </nav>
+
+    <!-- UI Elements -->
+    <div class="cursor-wrapper">
+        <div class="cursor-blob"></div>
+    </div>
+    <canvas id="bg-canvas" data-speed="0"></canvas>
+
+    <main class="container">
+        <div class="content-frame">
+            <section id="skills" class="static-section">
+                <div class="terminal-header">
+                    <span class="prompt">></span>
+                    <span class="command-text">view --projects --skills</span>
+                </div>
+                
+                <div class="t-content">
+                    <h2 class="scramble-text">Technical Arsenal</h2>
+                    
+                    <!-- Skills Table -->
+                    <div class="process-table">
+                        <div class="table-header">
+                            <span>CATEGORY</span><span>STACK</span><span>PROFICIENCY</span>
+                        </div>
+                        <div class="table-row">
+                            <span>Primary Lang</span><span>Python, Java, C</span><span class="status-run">High</span>
+                        </div>
+                        <div class="table-row">
+                            <span>Development</span><span>HTML, CSS, JS, Flutter</span><span class="status-run">High</span>
+                        </div>
+                        <div class="table-row">
+                            <span>AI / ML</span><span>TensorFlow, OpenCV, NLP</span><span class="status-run">Advanced</span>
+                        </div>
+                        <div class="table-row">
+                            <span>Tools</span><span>Git, VS Code, Unity, MySQL</span><span class="status-sleep">Standard</span>
+                        </div>
+                    </div>
+
+                    <h2 class="scramble-text mobile-margin">Project Modules</h2>
+                    <div class="grid-container">
+                        <article class="card">
+                            <h3>SanctuAI</h3>
+                            <p>Context-Aware Mental Health Text Redactor using NLP & Flask.</p>
+                            <span class="status-tag">[ TEAM LEAD ]</span>
+                        </article>
+                        
+                        <article class="card">
+                            <h3>AI Buyer Agent</h3>
+                            <p>Autonomous negotiation bot for e-commerce using Conversational AI.</p>
+                            <span class="status-tag">[ DEVELOPER ]</span>
+                        </article>
+
+                        <article class="card">
+                            <h3>Android App Dev</h3>
+                            <p>Kotlin/XML based application development.</p>
+                            <span class="status-tag">[ COMPLETED ]</span>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
