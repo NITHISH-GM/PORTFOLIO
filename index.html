@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Boot Loading Screen -->
@@ -24,13 +24,17 @@
     </div>
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">NM.</div>
         <ul class="nav-links">
-            <li><a href="#home">[ HOME ]</a></li>
-            <li><a href="#about">[ ABOUT ]</a></li>
-            <li><a href="#skills">[ SKILLS ]</a></li>
-            <li><a href="#contact">[ CONTACT ]</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+            🌓
+        </button>
     </nav>
 
     <!-- UI Elements -->
@@ -41,7 +45,7 @@
 
     <main class="container">
         <!-- Home Section -->
-        <section id="home" class="terminal-section" data-command="initialize profile --user Nithish_M">
+        <section id="home" class="terminal-section reveal-on-scroll" data-command="initialize profile --user Nithish_M">
             <div class="terminal-content">
                 <div class="command-line">
                     <span class="prompt">></span>
@@ -50,19 +54,19 @@
                 
                 <div class="home-layout">
                     <div class="t-content">
-                        <h1 class="scramble-text">NITHISH <span style="color:var(--highlight-color)">M</span></h1>
+                        <h1 class="scramble-text">NITHISH <span class="highlight-text">M</span></h1>
                         <p class="subtitle animate-item delay-2">AI &#x2022; DATA SCIENCE &#x2022; FULL STACK</p>
                         
-                        <div class="animate-item delay-3" style="margin-top: 2rem;">
+                        <div class="animate-item delay-3 info-box">
                             <p class="info-text">
-                                [ Education: B.Tech AI & DS @ Sri Sairam Eng. College ]<br>
-                                [ Location: Chennai, India ]<br>
-                                [ Focus: ML, NLP, Flutter, Unity ]
+                                <span class="info-label">Education:</span> B.Tech AI & DS @ Sri Sairam Eng. College<br>
+                                <span class="info-label">Location:</span> Chennai, India<br>
+                                <span class="info-label">Focus:</span> ML, NLP, Flutter, Unity
                             </p>
                         </div>
 
-                        <div class="animate-item delay-4" style="margin-top: 4rem;">
-                            <p style="font-size: 0.9rem; color: var(--dim-text);">[ SCROLL TO EXPLORE ]</p>
+                        <div class="animate-item delay-4 scroll-prompt">
+                            <p>[ SCROLL TO EXPLORE ]</p>
                         </div>
                     </div>
 
@@ -78,7 +82,7 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="static-section">
+        <section id="about" class="static-section reveal-on-scroll">
             <div class="terminal-header">
                 <span class="prompt">></span>
                 <span class="command-text">cat /sys/bio_data.txt</span>
@@ -99,12 +103,12 @@
                                     <li><span class="label">Degree:</span> B.Tech AI & Data Science</li>
                                     <li><span class="label">Institution:</span> Sri Sairam Engineering College</li>
                                     <li><span class="label">Batch:</span> 2023 - 2027</li>
-                                    <li><span class="label">CGPA:</span> 7.79</li>
+                                    <li><span class="label">CGPA:</span> 7.93</li>
                                 </ul>
                             </div>
 
                             <!-- Resume Button -->
-                            <div style="margin-top: 2rem;">
+                            <div class="resume-wrapper">
                                 <a href="resume.pdf" target="_blank" class="cyber-btn">
                                     <span class="btn-content">[ DOWNLOAD_RESUME ]</span>
                                     <span class="btn-glitch"></span>
@@ -125,12 +129,14 @@
                                     </li>
                                 </ul>
                              </div>
-                             <br>
+                             
                              <div class="cert-box">
-                                 <h3>[ Certifications ]</h3>
-                                 <span class="tag">IBM 1M1B</span>
-                                 <span class="tag">Cisco AI</span>
-                                 <span class="tag">NPTEL ML</span>
+                                 <h3 class="cert-title">[ Certifications ]</h3>
+                                 <div class="tags-container">
+                                     <span class="tag">IBM 1M1B</span>
+                                     <span class="tag">Cisco AI</span>
+                                     <span class="tag">NPTEL ML</span>
+                                 </div>
                              </div>
                         </div>
                     </div>
@@ -139,7 +145,7 @@
         </section>
 
         <!-- Skills & Projects Section -->
-        <section id="skills" class="static-section">
+        <section id="skills" class="static-section reveal-on-scroll">
             <div class="terminal-header">
                 <span class="prompt">></span>
                 <span class="command-text">view --projects --skills</span>
@@ -155,37 +161,55 @@
                             <span>CATEGORY</span><span>STACK</span><span>PROFICIENCY</span>
                         </div>
                         <div class="table-row">
-                            <span>Primary Lang</span><span>Python, Java, C</span><span class="status-run">High</span>
+                            <span class="cat-label">Primary Lang</span><span class="stack-val">Python, Java, C++</span><span class="status-run">High</span>
                         </div>
                         <div class="table-row">
-                            <span>Development</span><span>HTML, CSS, JS, Flutter</span><span class="status-run">High</span>
+                            <span class="cat-label">Development</span><span class="stack-val">HTML, CSS, JS, Flutter, Kotlin</span><span class="status-run">High</span>
                         </div>
                         <div class="table-row">
-                            <span>AI / ML</span><span>TensorFlow, OpenCV, NLP</span><span class="status-run">Advanced</span>
+                            <span class="cat-label">AI / ML</span><span class="stack-val">TensorFlow, OpenCV, NLP</span><span class="status-adv">Advanced</span>
                         </div>
                         <div class="table-row">
-                            <span>Tools</span><span>Git, VS Code, Unity, MySQL</span><span class="status-sleep">Standard</span>
+                            <span class="cat-label">Tools</span><span class="stack-val">Git, Blender, MySQL</span><span class="status-sleep">Standard</span>
                         </div>
                     </div>
 
                     <h2 class="scramble-text mobile-margin">Project Modules</h2>
                     <div class="grid-container">
                         <article class="card animate-item">
-                            <h3>SanctuAI</h3>
-                            <p>Context-Aware Mental Health Text Redactor using NLP & Flask.</p>
+                            <div class="card-content">
+                                <h3>SanctuAI</h3>
+                                <div style="font-size: 0.75rem; color: var(--highlight-color); margin-bottom: 1rem; font-family: var(--font-heading);">Python | NLP | TensorFlow | Flask</div>
+                                <p>AI tool that redacts sensitive mental health data while fully preserving context. Features integrated sentiment analysis and real-time text processing.</p>
+                            </div>
                             <span class="status-tag">[ TEAM LEAD ]</span>
                         </article>
                         
                         <article class="card animate-item">
-                            <h3>AI Buyer Agent</h3>
-                            <p>Autonomous negotiation bot for e-commerce using Conversational AI.</p>
+                            <div class="card-content">
+                                <h3>AI Buyer Agent</h3>
+                                <div style="font-size: 0.75rem; color: var(--highlight-color); margin-bottom: 1rem; font-family: var(--font-heading);">Python | NLP | Conversational AI</div>
+                                <p>Dynamic autonomous agent designed to negotiate prices with sellers in e-commerce, optimizing deals while strictly maintaining human-like interactions.</p>
+                            </div>
                             <span class="status-tag">[ DEVELOPER ]</span>
                         </article>
 
                         <article class="card animate-item">
-                            <h3>Android App Dev</h3>
-                            <p>Kotlin/XML based application development.</p>
-                            <span class="status-tag">[ COMPLETED ]</span>
+                            <div class="card-content">
+                                <h3>N-Lab</h3>
+                                <div style="font-size: 0.75rem; color: var(--highlight-color); margin-bottom: 1rem; font-family: var(--font-heading);">Kotlin | XML | Coroutines | RxFFmpeg</div>
+                                <p>Native Android engine for high-performance processing of PDFs, Office documents, and media editing leveraging iText7 and Apache POI.</p>
+                            </div>
+                            <span class="status-tag">[ APP DEVELOPER ]</span>
+                        </article>
+
+                        <article class="card animate-item">
+                            <div class="card-content">
+                                <h3>Job-Trekker</h3>
+                                <div style="font-size: 0.75rem; color: var(--highlight-color); margin-bottom: 1rem; font-family: var(--font-heading);">Flutter | Dart | Firebase | Riverpod</div>
+                                <p>Cross-platform job-tracking application deployed with scalable Clean Architecture, Hive storage operations, and automated Gmail API integration.</p>
+                            </div>
+                            <span class="status-tag">[ APP DEVELOPER ]</span>
                         </article>
                     </div>
                 </div>
@@ -193,23 +217,23 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="static-section">
+        <section id="contact" class="static-section reveal-on-scroll">
             <div class="terminal-header">
                 <span class="prompt">></span>
                 <span class="command-text">./connect_nithish.sh</span>
             </div>
 
             <div class="content-frame section-wrapper">
-                <div class="t-content" style="max-width: 700px; margin: 0 auto;">
+                <div class="t-content contact-inner">
                     <div class="contact-header">
                         <h2 class="scramble-text">Establish Uplink</h2>
-                        <p class="animate-item">Chennai, India | +91 7904985237</p>
+                        <p class="animate-item loc-text">Chennai, India | +91 7904985237</p>
                     </div>
                     
                     <form id="contact-form" class="animate-item" onsubmit="event.preventDefault(); sendMessage();">
                         <div class="input-wrap">
                             <label for="email">SENDER_ID (Email):</label>
-                            <input type="email" id="email" placeholder="nithish1436m@gamil.com (System Default)" required>
+                            <input type="email" id="email" placeholder="yourname@gmail.com" required>
                         </div>
                         <div class="input-wrap">
                             <label for="message">TRANSMISSION_DATA:</label>
@@ -219,18 +243,20 @@
                     </form>
 
                     <div class="footer-info animate-item">
-                        <p>SESSION UPTIME: <span id="uptime-counter">00:00:00</span></p>
+                        <p class="uptime">SESSION UPTIME: <span id="uptime-counter">00:00:00</span></p>
                         <div class="social-links-minimal">
-                            <a href="https://linkedin.com/in/M-NITHISH" target="_blank">LinkedIn</a> | 
-                            <a href="mailto:nithish1436m@gamil.com">Email</a> | 
+                            <a href="https://linkedin.com/in/M-NITHISH" target="_blank">LinkedIn</a>
+                            <span class="divider">|</span>
+                            <a href="mailto:nithish1436m@gmail.com">Email</a>
+                            <span class="divider">|</span>
                             <a href="#">GitHub</a>
                         </div>
-                        <p style="margin-top: 1rem; font-size: 0.7rem; color: #444;">SYSTEM ARCHITECT: NITHISH M</p>
+                        <p class="arch-tag">SYSTEM ARCHITECT: NITHISH M</p>
                     </div>
                 </div>
             </div>
         </section>
-
+    </main>
     <script src="script.js"></script>
 </body>
 </html>

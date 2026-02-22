@@ -21,7 +21,46 @@ document.addEventListener('DOMContentLoaded', () => {
     initUptimeCounter();
     initScrollReveal(); // New Premium Animation
     initVoxelModel();   // New Voxel Logic
+    initNavbarScroll();
+    initThemeToggle();
 });
+
+// --- THEME & NAVBAR LOGIC ---
+function initNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    window.addEventListener('scroll', throttle(() => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }, 100), { passive: true });
+}
+
+function initThemeToggle() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    
+    // Check local storage or system pref
+    let savedTheme = localStorage.getItem('theme');
+    if (!savedTheme) {
+        savedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    btn.innerHTML = savedTheme === 'dark' ? '🌓' : '🌑';
+
+    btn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        btn.innerHTML = newTheme === 'dark' ? '🌓' : '🌑';
+    });
+}
+
 
 // --- VOXEL 3D MODEL GENERATOR ---
 // --- VOXEL 3D MODEL GENERATOR (Optimized) ---
@@ -46,7 +85,7 @@ function initVoxelModel() {
         "00011011000"
     ];
 
-    const size = 18; 
+    const size = 30; 
     const cols = 11;
     const rows = 8;
     
@@ -107,15 +146,22 @@ function initVoxelModel() {
 // --- SCROLL REVEAL ANIMATION ---
 function initScrollReveal() {
     const observer = new IntersectionObserver((entries) => {
+        let staggerDelay = 0;
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
+                // Apply a dynamic stagger effect if multiple elements appear at once
+                setTimeout(() => {
+                    entry.target.classList.add('is-visible');
+                }, staggerDelay * 100);
+                staggerDelay++;
+                // Unobserve after revealing to prevent re-animating
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
 
-    // Target multiple elements for reveal effect
-    const targets = document.querySelectorAll('.content-frame, .card, .terminal-header, .animate-item');
+    // Target almost all structured elements for reveal effect
+    const targets = document.querySelectorAll('.reveal-on-scroll, .content-frame, .card, .terminal-header, .animate-item, .table-row, .specs-box, .cert-box, .input-wrap');
     targets.forEach(el => {
         el.classList.add('reveal-on-scroll'); // Add base class here if missing
         observer.observe(el);
@@ -212,7 +258,7 @@ function runBootSequence(screen) {
     ];
 
     let delay = 0;
-    const totalTime = 800; 
+    const totalTime = 2500; // Increased to 2.5 seconds for a satisfying pre-load
     const interval = totalTime / bootMessages.length;
 
     bootMessages.forEach((msg, index) => {
@@ -515,16 +561,51 @@ function initUptimeCounter() {
     }, 1000);
 }
 
-// Form logic
-window.sendMessage = function() {
+// Form logic (Connected to Formsubmit API)
+window.sendMessage = async function() {
+    const form = document.getElementById('contact-form');
     const btn = document.querySelector('.send-btn');
-    if(!btn) return;
-    const txt = btn.innerText;
-    btn.innerText = '[ SENDING... ]';
-    setTimeout(() => {
-        alert('TRANSMISSION SUCCESSFUL');
-        document.getElementById('contact-form')?.reset();
-        btn.innerText = '[ SENT ]';
-        setTimeout(() => btn.innerText = txt, 2000);
-    }, 1000);
+    if(!btn || !form) return;
+    
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    if(!email || !message) return;
+
+    const originalText = btn.innerText;
+    btn.innerText = '[ TRANSMITTING... ]';
+    btn.style.pointerEvents = 'none';
+
+    try {
+        const response = await fetch("https://formsubmit.co/ajax/nithish1436m@gmail.com", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                message: message,
+                _subject: "New Transmission from NM. Portfolio!"
+            })
+        });
+
+        if (response.ok) {
+            btn.innerText = '[ TRANSMISSION SUCCESS ]';
+            btn.style.color = 'var(--highlight-color)';
+            form.reset();
+        } else {
+            throw new Error("Transmission failed");
+        }
+    } catch (error) {
+        btn.innerText = '[ FAILED. RETRY? ]';
+        btn.style.color = '#ff3333';
+        console.error('Error:', error);
+    } finally {
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.pointerEvents = 'all';
+            btn.style.color = '';
+        }, 3000);
+    }
 };
